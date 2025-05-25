@@ -1,13 +1,14 @@
 import streamlit as st
 import requests
 
+#TODO: Optimize performance and code quality
 st.title("Code Explanation Chatbot")
 
 code_snippet = st.text_area("Paste your code snippet here:")
 
 if st.button("Get Explanation"):
     if code_snippet:
-        response = requests.post("https://chatbot-backend-prasinghal.azurewebsites.net//explain", json={"code": code_snippet})
+        response = requests.post("http://127.0.0.1:5000/explain", json={"code": code_snippet})
         if response.status_code == 200:
             explanation = response.json().get("explanation", "No explanation available.")
             st.write("### Explanation:")
